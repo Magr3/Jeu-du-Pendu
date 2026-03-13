@@ -16,14 +16,12 @@ export class GameServices {
   record: number = 0;
   status: "playing" | "won" | "lost" = 'playing'
 
-  private wordList: string[] = ['ANGULAR', 'TYPESCRIPT', 'SERVICE', 'COMPONENT'];
   public startGame() {
     this.letters = [];
     this.errors = 0;
     this.status = "playing";
-    
-
-    this.word = this.wordList[Math.floor(Math.random() * this.wordList.length)]
+  
+    this.apiService.getRandomWord().subscribe(r => { this.word = r[0]["word"]})
   }
 
   private isWordGuessed(): boolean {
@@ -53,7 +51,6 @@ export class GameServices {
           this.addToHistory(true)
           this.record += 1
           this.status = "won"
-              
         }
 
       } else {
