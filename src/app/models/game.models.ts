@@ -6,7 +6,14 @@ export interface PlayedLetter {
 export interface GameRecord {
     date: Date;
     word: string;
-    guessedLetters: string[];
+    letters: PlayedLetter[];
     errors: number;
     won: boolean;
+}
+
+export interface Word {
+    word: string;
+    length: number;
+    category: string;
+    language: string;
 }
