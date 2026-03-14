@@ -35,11 +35,13 @@
 
       <div class="word-container">
         <div id="word-display" class="word-display">
-          <span class="letter-placeholder"></span>
-          <span class="letter-placeholder"></span>
-          <span class="letter-placeholder"></span>
-          <span class="letter-placeholder"></span>
-          <span class="letter-placeholder"></span>
+            @for (item of gs.word.split(''); track $index) {
+                @if (gs.letters.some(l => l.letter == item)) {
+                    <span class="letter-placeholder">{{item}}</span>
+                } @else {
+                    <span class="letter-placeholder"></span>
+                }  
+            }
         </div>
       </div>
     </div>

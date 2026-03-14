@@ -8,7 +8,7 @@ import { GameServices } from '../../services/game';
   styleUrl: './game.css',
 })
 export class Game implements OnInit {
-  constructor (private gs: GameServices) {}
+  constructor (protected gs: GameServices) {}
 
   public ngOnInit(): void {
     this.gs.startGame()

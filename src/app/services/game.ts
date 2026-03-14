@@ -20,8 +20,16 @@ export class GameServices {
     this.letters = [];
     this.errors = 0;
     this.status = "playing";
-  
-    this.apiService.getRandomWord().subscribe(r => { this.word = r[0]["word"]})
+    
+   
+  this.apiService.getRandomWord().subscribe(r => {
+    if (/^[A-Z]+$/.test(r[0].word)) {
+      this.word = r[0].word;
+    } else {
+      this.startGame();
+    }
+  })
+
   }
 
   private isWordGuessed(): boolean {
