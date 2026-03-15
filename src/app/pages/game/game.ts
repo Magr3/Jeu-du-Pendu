@@ -1,9 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GameServices } from '../../services/game';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-game',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './game.html',
   styleUrl: './game.css',
 })
