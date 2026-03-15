@@ -11,9 +11,14 @@ import { RouterLink } from '@angular/router';
 export class Game implements OnInit {
   constructor (protected gs: GameServices) {}
 
-  public ngOnInit(): void {
+  // public ngOnInit(): void {
+  //   this.gs.startGame()
+  // }
+
+    public ngOnInit(): void {
     this.gs.startGame()
-  }
+    console.log('word:', this.gs.word)
+    }
 
   @HostListener('document:keydown', ['$event'])
   onKeyDown(e : KeyboardEvent) {

@@ -10,23 +10,23 @@
             <line x1="150" y1="20" x2="150" y2="60" stroke-width="4" />
           </g>
 
-          <g id="error-1" [class.hidden]='1 > gs.errors'>
+          <g id="error-1" [class.hidden]='1 > gs.errors()'>
             <circle cx="150" cy="90" r="30" fill="none" stroke-width="4" />
           </g>
 
-          <g id="error-2" [class.hidden]='2 > gs.errors'>
+          <g id="error-2" [class.hidden]='2 > gs.errors()'>
             <line x1="150" y1="120" x2="150" y2="220" stroke-width="4" />
           </g>
 
-          <g id="error-3" [class.hidden]='3 > gs.errors'>
+          <g id="error-3" [class.hidden]='3 > gs.errors()'>
             <line x1="150" y1="140" x2="110" y2="180" stroke-width="4" />
           </g>
 
-          <g id="error-4" [class.hidden]='4 > gs.errors'>
+          <g id="error-4" [class.hidden]='4 > gs.errors()'>
             <line x1="150" y1="140" x2="190" y2="180" stroke-width="4" />
           </g>
 
-          <g id="error-5" [class.hidden]='5 > gs.errors'>
+          <g id="error-5" [class.hidden]='5 > gs.errors()'>
             <line x1="150" y1="220" x2="110" y2="280" stroke-width="4" />
             <line x1="150" y1="220" x2="190" y2="280" stroke-width="4" />
           </g>
@@ -35,13 +35,16 @@
 
       <div class="word-container">
         <div id="word-display" class="word-display">
-            @for (item of gs.word.split(''); track $index) {
-                @if (gs.letters.some(l => l.letter == item)) {
-                    <span class="letter-placeholder">{{item}}</span>
-                } @else {
-                    <span class="letter-placeholder"></span>
-                }  
+          @if (gs.word() !== '') {
+            @for (item of gs.word().split(''); track $index) {
+              @if (gs.letters().some(l => l.letter == item)) {
+                  <span class="letter-placeholder">{{item}}</span>
+              } @else {
+                  <span class="letter-placeholder"></span>
+              }  
             }
+          }
+            
         </div>
       </div>
     </div>
@@ -51,19 +54,19 @@
         <div class="card-body">
           <h2 class="card-title">Lettres jouées</h2>
           <div class="text-center">
-            @if (gs.letters.length == 0) {
-              <p class="hint-text">Tapez une lettre au clavier</p>
-            }
+          @if (gs.letters().length == 0) {
+            <p class="hint-text">Tapez une lettre au clavier</p>
+          }
             
-                <div id="letters-used" class="letters-container">
-                  @for (letter of gs.letters; track $index ) {
-                    @if (letter.isCorrect) {
-                      <span class="badge badge-success">{{letter.letter}}</span>
-                    } @else {
-                      <span class="badge badge-error">{{letter.letter}}</span>
-                    }
-                  }
-                </div>
+          <div id="letters-used" class="letters-container">
+            @for (letter of gs.letters(); track $index ) {
+              @if (letter.isCorrect) {
+                <span class="badge badge-success">{{letter.letter}}</span>
+              } @else {
+                <span class="badge badge-error">{{letter.letter}}</span>
+              }
+            }
+          </div>
             
           </div>
         </div>
@@ -80,13 +83,20 @@
   </div>
 </main>
 
-<dialog id="game-over-modal" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Partie terminée !</h3>
-    <p class="py-4" id="game-result"></p>
-    <div class="modal-action">
-      <button class="btn btn-primary">Rejouer</button>
+@if (gs.status() != "playing") {
+  <dialog id="game-over-modal" class="modal" open>
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Partie terminée !</h3>
+      @if (gs.status() == "won") {
+        <p class="py-4" id="game-result">Félicitations!</p>
+      } @else {
+        <p class="py-4" id="game-result">Game Over! Le mot était: {{gs.word()}}</p>
+      }
+      <div class="modal-action">
+        <button class="btn btn-primary" (click)="gs.startGame()">Rejouer</button>
+      </div>
     </div>
-  </div>
-</dialog>
+  </dialog>
+}
+
 
