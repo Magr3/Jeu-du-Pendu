@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-hangman-draw',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './hangman-draw.css',
 })
 export class HangmanDraw {
-
+  errors = input(0)
 }
