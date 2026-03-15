@@ -51,8 +51,20 @@
         <div class="card-body">
           <h2 class="card-title">Lettres jouées</h2>
           <div class="text-center">
-            <p class="hint-text">Tapez une lettre au clavier</p>
-            <div id="letters-used" class="letters-container"></div>
+            @if (gs.letters.length == 0) {
+              <p class="hint-text">Tapez une lettre au clavier</p>
+            }
+            
+                <div id="letters-used" class="letters-container">
+                  @for (letter of gs.letters; track $index ) {
+                    @if (letter.isCorrect) {
+                      <span class="badge badge-success">{{letter.letter}}</span>
+                    } @else {
+                      <span class="badge badge-error">{{letter.letter}}</span>
+                    }
+                  }
+                </div>
+            
           </div>
         </div>
       </div>
