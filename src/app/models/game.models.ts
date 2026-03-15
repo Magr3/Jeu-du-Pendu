@@ -4,7 +4,7 @@ export interface PlayedLetter {
 }
 
 export interface GameRecord {
-    date: Date;
+    date: string;
     word: string;
     letters: PlayedLetter[];
     errors: number;

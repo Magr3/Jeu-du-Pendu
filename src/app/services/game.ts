@@ -40,7 +40,7 @@ export class GameServices {
 
   private addToHistory(value : boolean) {
     this.gameHistory.update(currentState => [...currentState, {
-      date: new Date(),
+      date: new Date().toLocaleDateString(),
       word: this.word(),
       letters: this.letters(),
       errors: this.errors(),

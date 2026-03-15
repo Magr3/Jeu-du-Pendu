@@ -1,1 +1,61 @@
-<p>history works!</p>
+<div class="main-grid">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold">📜 Historique des parties</h2>
+    <button class="btn btn-primary" routerLink="/">Retour au jeu</button>
+  </div>
+
+  <div class="stats shadow w-full mb-6">
+    <div class="stat">
+      <div class="stat-title">Parties jouées</div>
+      <div class="stat-value text-2xl">{{gs.gameHistory().length}}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Victoires</div>
+      <div class="stat-value text-2xl text-success">{{gs.gameHistory().filter(g => g.won).length}}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Défaites</div>
+      <div class="stat-value text-2xl text-error">{{gs.gameHistory().filter(g => !g.won).length}}</div>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Mot</th>
+          <th>Lettres trouvées</th>
+          <th>Erreurs</th>
+          <th>Résultat</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        @for (game of gs.gameHistory(); track $index){
+            <tr>
+                <td>{{game.date}}</td>
+                <td class="font-mono font-bold">{{game.word}}</td>
+                <td>
+                    <div class="letters-cell">
+                    @for (letter of game.letters; track $index ) {
+                        @if (letter.isCorrect) {
+                            <span class="badge badge-success">{{letter.letter}}</span>
+                        } @else {
+                            <span class="badge badge-error">{{letter.letter}}</span>
+                        }
+                    } 
+                    </div>
+                </td>
+                <td>{{game.errors}}/5</td>
+                @if (game.won) {
+                    <td><span class="badge badge-success">Gagné</span></td>
+                } @else {
+                    <td><span class="badge badge-error">Perdu</span></td>
+                }
+            </tr>
+        }
+    
+      </tbody>
+    </table>
+    </div>
