@@ -1,24 +1,20 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GameServices } from '../../services/game';
 import { RouterLink } from '@angular/router';
+import { HangmanDraw } from '../../components/hangman-draw/hangman-draw';
 
 @Component({
   selector: 'app-game',
-  imports: [RouterLink],
+  imports: [RouterLink, HangmanDraw],
   templateUrl: './game.html',
   styleUrl: './game.css',
 })
 export class Game implements OnInit {
   constructor (protected gs: GameServices) {}
 
-  // public ngOnInit(): void {
-  //   this.gs.startGame()
-  // }
-
-    public ngOnInit(): void {
+  public ngOnInit(): void {
     this.gs.startGame()
-    console.log('word:', this.gs.word)
-    }
+  }
 
   @HostListener('document:keydown', ['$event'])
   onKeyDown(e : KeyboardEvent) {

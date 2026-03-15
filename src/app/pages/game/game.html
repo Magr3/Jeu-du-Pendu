@@ -2,35 +2,7 @@
   <div class="game-layout">
     <div class="game-area">
       <div class="hangman-container">
-        <svg id="hangman" width="300" height="350" viewBox="0 0 300 350" class="stroke-primary">
-          <g id="base" class="opacity-30">
-            <line x1="20" y1="330" x2="180" y2="330" stroke-width="4" />
-            <line x1="50" y1="330" x2="50" y2="20" stroke-width="4" />
-            <line x1="50" y1="20" x2="150" y2="20" stroke-width="4" />
-            <line x1="150" y1="20" x2="150" y2="60" stroke-width="4" />
-          </g>
-
-          <g id="error-1" [class.hidden]='1 > gs.errors()'>
-            <circle cx="150" cy="90" r="30" fill="none" stroke-width="4" />
-          </g>
-
-          <g id="error-2" [class.hidden]='2 > gs.errors()'>
-            <line x1="150" y1="120" x2="150" y2="220" stroke-width="4" />
-          </g>
-
-          <g id="error-3" [class.hidden]='3 > gs.errors()'>
-            <line x1="150" y1="140" x2="110" y2="180" stroke-width="4" />
-          </g>
-
-          <g id="error-4" [class.hidden]='4 > gs.errors()'>
-            <line x1="150" y1="140" x2="190" y2="180" stroke-width="4" />
-          </g>
-
-          <g id="error-5" [class.hidden]='5 > gs.errors()'>
-            <line x1="150" y1="220" x2="110" y2="280" stroke-width="4" />
-            <line x1="150" y1="220" x2="190" y2="280" stroke-width="4" />
-          </g>
-        </svg>
+        <app-hangman-draw [errors]="gs.errors()"/>
       </div>
 
       <div class="word-container">
