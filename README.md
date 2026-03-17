@@ -74,6 +74,4 @@ L'application sera disponible sur `http://localhost:4200`.
 4. Les lettres incorrectes ajoutent une partie au dessin du pendu
 5. Trouvez le mot avant de commettre 6 erreurs pour gagner !
 
-## Licence
 
-MIT
