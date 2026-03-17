@@ -56,4 +56,10 @@
   </dialog>
 }
 
+@if (gs.isError()) {
+  <div class="text-center mt-4">
+    <p class="text-error font-bold">Erreur de connexion à l'API</p>
+    <button class="btn btn-primary mt-2" (click)="gs.startGame()">Réessayer</button>
+  </div>
+}
 
