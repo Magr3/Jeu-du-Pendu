@@ -12,7 +12,7 @@ export class WordApi {
   ) {}
 
   public getRandomWord(){
-    return this.http.get<Word[]>("https://random-words-api.kushcreates.com/api?language=ggh&type=uppercase&words=1").pipe(
+    return this.http.get<Word[]>("https://random-words-api.kushcreates.com/api?language=it&type=uppercase&words=1").pipe(
       map(value => {
         if (!value) {
           throw new Error("No words received")
