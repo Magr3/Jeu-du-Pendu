@@ -1,0 +1,13 @@
+<dialog id="game-over-modal" class="modal" open>
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Partie terminée !</h3>
+    @if (status() == "won") {
+      <p class="py-4" id="game-result">Félicitations!</p>
+    } @else {
+      <p class="py-4" id="game-result">Game Over! Le mot était: {{word()}}</p>
+    }
+    <div class="modal-action">
+      <button class="btn btn-primary" (click)="replay.emit()">Rejouer</button>
+    </div>
+  </div>
+</dialog>
