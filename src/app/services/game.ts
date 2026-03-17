@@ -72,7 +72,7 @@ export class GameServices {
         }])
         this.errors.update(e => e + 1)
 
-        if (this.errors() >= 5) {
+        if (this.errors() >= 6) {
           this.addToHistory(false)
           this.record.set(0)
           this.status.set("lost")
