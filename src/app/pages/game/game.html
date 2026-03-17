@@ -6,18 +6,9 @@
       </div>
 
       <div class="word-container">
-        <div id="word-display" class="word-display">
-          @if (gs.word() !== '') {
-            @for (item of gs.word().split(''); track $index) {
-              @if (gs.letters().some(l => l.letter == item)) {
-                  <span class="letter-placeholder">{{item}}</span>
-              } @else {
-                  <span class="letter-placeholder"></span>
-              }  
-            }
-          }
-            
-        </div>
+        @if (gs.word() !== '') {
+          <app-word-display [word]="gs.word()" [letters]="gs.letters()"/>
+        }
       </div>
     </div>
 
@@ -41,19 +32,7 @@
 </main>
 
 @if (gs.status() != "playing") {
-  <dialog id="game-over-modal" class="modal" open>
-    <div class="modal-box">
-      <h3 class="font-bold text-lg">Partie terminée !</h3>
-      @if (gs.status() == "won") {
-        <p class="py-4" id="game-result">Félicitations!</p>
-      } @else {
-        <p class="py-4" id="game-result">Game Over! Le mot était: {{gs.word()}}</p>
-      }
-      <div class="modal-action">
-        <button class="btn btn-primary" (click)="gs.startGame()">Rejouer</button>
-      </div>
-    </div>
-  </dialog>
+  <app-game-over-modal [status]="gs.status()" [word]="gs.word()" (replay)="gs.startGame()"/>
 }
 
 @if (gs.isError()) {
@@ -62,4 +41,3 @@
     <button class="btn btn-primary mt-2" (click)="gs.startGame()">Réessayer</button>
   </div>
 }
-

@@ -2,11 +2,13 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { GameServices } from '../../services/game';
 import { RouterLink } from '@angular/router';
 import { HangmanDraw } from '../../components/hangman-draw/hangman-draw';
-import { LettersUsed } from "../../components/letters-used/letters-used";
+import { LettersUsed } from '../../components/letters-used/letters-used';
+import { WordDisplay } from '../../components/word-display/word-display';
+import { GameOverModal } from '../../components/game-over-modal/game-over-modal';
 
 @Component({
   selector: 'app-game',
-  imports: [RouterLink, HangmanDraw, LettersUsed],
+  imports: [RouterLink, HangmanDraw, LettersUsed, WordDisplay, GameOverModal],
   templateUrl: './game.html',
   styleUrl: './game.css',
 })
