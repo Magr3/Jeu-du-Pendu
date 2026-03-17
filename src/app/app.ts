@@ -9,6 +9,6 @@ import { GameServices } from './services/game';
   styleUrl: './app.css'
 })
 export class App {
-  constructor (protected gs : GameServices){}
+  constructor(protected gs : GameServices){}
   protected readonly title = signal('Pendu_Angular');
 }

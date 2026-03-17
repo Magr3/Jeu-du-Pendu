@@ -15,6 +15,8 @@ export class GameServices {
   record = signal(0)
   status = signal<"playing"|"won"|"lost">("playing")
   gameHistory = signal<GameRecord[]>([])
+  isError = signal(false)
+
 
   public startGame() {
 
@@ -22,14 +24,20 @@ export class GameServices {
     this.errors.set(0);
     this.status.set("playing");
     this.word.set("");
-    
-   
-    this.apiService.getRandomWord().subscribe(r => {
-      console.log('API response:', r)
-      if (/^[A-Z]+$/.test(r[0].word)) {
-        this.word.set(r[0].word);
-      } else {
-        this.startGame();
+    this.isError.set(false);
+
+    this.apiService.getRandomWord().subscribe({
+      next: (response) => {
+        console.log(response)
+        if (/^[A-Z]+$/.test(response[0].word)) {
+          this.word.set(response[0].word);
+        } else {
+          this.startGame();
+        }
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+        this.isError.set(true);
       }
     })
   }
